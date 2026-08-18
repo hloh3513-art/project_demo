@@ -32,7 +32,10 @@ app.add_middleware(
 )
 
 # ---- shared state, updated once a minute in the background ----
+DEVICE_NAME = "Sensor-01"  # rename this to match your actual beacon/board
+
 latest_data = {
+    "device_name": DEVICE_NAME,
     "temperature_c": 25.0,
     "humidity_pct": 50.0,
     "acceleration_g": {"x": 0.0, "y": 0.0, "z": 1.0},
@@ -44,6 +47,7 @@ lock = threading.Lock()
 def generate_reading():
     """Replace this with real sensor/beacon reads when you have a data source."""
     return {
+        "device_name": DEVICE_NAME,
         "temperature_c": round(random.uniform(20.0, 30.0), 1),
         "humidity_pct": round(random.uniform(30.0, 70.0), 1),
         "acceleration_g": {
